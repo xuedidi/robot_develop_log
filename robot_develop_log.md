@@ -44,25 +44,27 @@
    **move_group**本质上还是一个ROS的**节点**，它需要使用ROS的参数服务器来获取以下三种信息。
    * URDF：
    
-    **move_group**需要机械臂的URDF文件来进行运动规划。
+     **move_group**需要机械臂的URDF文件来进行运动规划。
    * SRDF：
    
-    **move_group**在启动时会寻找机械臂的SRDF文件，它可以通过使用MoveIt! Setup Assistant自动生成。
+     **move_group**在启动时会寻找机械臂的SRDF文件，它可以通过使用MoveIt! Setup Assistant自动生成。
    * MoveIt配置：
-    **move_group**在启动时会加载机械臂的关节限位、动力学、运动规划、感知以及其他相关信息。所有以上的配置信息都可以通过使用MoveIt! Setup Assistant自动生成。
+   
+     **move_group**在启动时会加载机械臂的关节限位、动力学、运动规划、感知以及其他相关信息。所有以上的配置信息都可以通过使用MoveIt! Setup Assistant自动生成。
 * **机器人接口：**
 
    **move_group**使用ROS中的**Topic**和**Action**两种机制来与机械臂进行数据通信。它可以获取当前机械臂的**位置**信息，**点云数据**以及其他传感器数据，并且发送命令给机械臂的Controller。
    * 关节状态信息：
    
-    **move_group**通过监听机械臂的/joint_states主题来获取当前的状态信息。move_group只负责监听，需要给机械臂配置好**Joint State Controller**。
+     **move_group**通过监听机械臂的/joint_states主题来获取当前的状态信息。move_group只负责监听，需要给机械臂配置好**Joint State Controller**。
    * 坐标转换信息：
    
-    **move_group**通过订阅机械臂的TF主题来确定机械臂内部各关节之间的位置变换关系。跟上面一样，需要运行**Robot State Publier**节点来发布坐标转换。
+     **move_group**通过订阅机械臂的TF主题来确定机械臂内部各关节之间的位置变换关系。跟上面一样，需要运行**Robot State Publier**节点来发布坐标转换。
 * **控制器接口：**
 
-   **move_group**使用**Follow Joint Trajectory**类型的**Action**接口来与控制器（Controller）进行数据通信。
-   **move_group**是不带Action接口的，它是使用了一个特殊的插件来发布上述Follow Joint Trajectory类型的Action，而对于机械臂来说，你依然需要自己配置上述类型的Controller来订阅机械臂的数据。   
+    **move_group**使用**Follow Joint Trajectory**类型的**Action**接口来与控制器（Controller）进行数据通信。
+	
+    **move_group**是不带Action接口的，它是使用了一个特殊的插件来发布上述Follow Joint Trajectory类型的Action，而对于机械臂来说，你依然需要自己配置上述类型的Controller来订阅机械臂的数据。   
 * **规划场景：**
 
    Planning Scene指的是机械臂本身以及其周围环境的表示。
@@ -74,7 +76,7 @@
 
   * 古月居前辈对运动规划的解释：
   
-  假设我们已知机器人的**初始姿态**和**目标姿态**，以及机器人和环境的模型参数，那么我们就可以通过一定的算法，在躲避环境障碍物和放置自身碰撞的同时，找到一条到达目标姿态的较优路径，这种算法就称为机器人的运动规划。机器人和环境的模型静态参数由URDF文件提供，在实际场景下还需要加入3D摄像头、激光雷达来动态检测环境变化，避免与动态障碍物发生碰撞。
+    假设我们已知机器人的**初始姿态**和**目标姿态**，以及机器人和环境的模型参数，那么我们就可以通过一定的算法，在躲避环境障碍物和放置自身碰撞的同时，找到一条到达目标姿态的较优路径，这种算法就称为机器人的运动规划。机器人和环境的模型静态参数由URDF文件提供，在实际场景下还需要加入3D摄像头、激光雷达来动态检测环境变化，避免与动态障碍物发生碰撞。
 
   
    
