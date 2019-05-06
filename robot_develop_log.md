@@ -9,6 +9,7 @@
  * [git](https://github.com/phodal/github)漫游指南
  * [git](http://www.cnblogs.com/mike-mei/p/8013035.html)教程
  * [Markdown](https://blog.csdn.net/u014061630/article/details/81359144#00)教程
+ * [AGV](https://github.com/RobotnikAutomation/agvs)模型在Gazebo仿真
  ***
 ## 2018.12.28 燕山大学
 ***
